@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Web Proxy</title>
+    <title>ProxyHub - Advanced Web Proxy</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -30,31 +30,37 @@
 <div class="main-container">
     <div class="header">
         <div class="url-bar">
-            <input type="text" id="urlInput" placeholder="Enter URL or search..." value="https://example.com">
+            <input type="text" id="urlInput" placeholder="Enter URL (e.g., google.com)" value="https://example.com">
             <select id="proxySelect">
                 <option value="corsproxy">CORSProxy</option>
                 <option value="allorigins">AllOrigins</option>
                 <option value="api-allorigins">API (AllOrigins)</option>
             </select>
-            <button onclick="launchProxy()" class="launch-btn">Launch</button>
+            <button onclick="launchProxy()" class="launch-btn">🚀 Launch</button>
+            <button onclick="copyURL()" class="copy-btn" title="Copy URL (Ctrl+C)">📋 Copy</button>
             <button onclick="refreshProxy()" class="refresh-btn">🔄</button>
             <button onclick="goBack()" class="back-btn">←</button>
             <button onclick="goForward()" class="forward-btn">→</button>
         </div>
         <div class="status-bar">
-            <span id="statusText">Ready</span>
+            <span id="statusText">✓ Ready</span>
             <span id="loadingSpinner" class="spinner" style="display: none;">⏳</span>
         </div>
     </div>
 
     <div class="viewer-container">
         <iframe id="viewer" class="viewer"></iframe>
+        <div class="empty-state" id="emptyState">
+            <h2>🌐 Welcome to ProxyHub</h2>
+            <p>Enter a URL above and click Launch to get started!</p>
+            <p style="font-size: 12px; color: #888; margin-top: 20px;">💡 Try: google.com, wikipedia.org, reddit.com</p>
+        </div>
     </div>
 </div>
 
 <div class="settings-modal" id="settingsModal">
     <div class="settings-content">
-        <h2>Settings</h2>
+        <h2>⚙️ Settings</h2>
         <label>
             <input type="checkbox" id="darkMode" onchange="toggleDarkMode()"> Dark Mode
         </label>
@@ -66,10 +72,9 @@
         </label>
         <hr>
         <h3>Advanced Settings</h3>
-        <label>
-            <input type="text" id="customProxy" placeholder="Custom proxy URL (optional)">
-        </label>
-        <small>Custom proxy should accept URL as parameter</small>
+        <label>Custom Proxy URL:</label>
+        <input type="text" id="customProxy" placeholder="https://proxy.com/?url=" style="width: 100%; padding: 8px; margin: 10px 0;">
+        <small>Leave blank to use selected proxy above</small>
         <hr>
         <button onclick="exportData()">📥 Export Data</button>
         <button onclick="importData()">📤 Import Data</button>
