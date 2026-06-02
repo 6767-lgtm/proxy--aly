@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Proxy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h1>🌐 ProxyHub</h1>
+        <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
+    </div>
+    
+    <div class="sidebar-section">
+        <h3>Quick Access</h3>
+        <div class="bookmarks" id="bookmarks"></div>
+        <button class="add-bookmark-btn" onclick="addBookmark()">+ Add Bookmark</button>
+    </div>
+
+    <div class="sidebar-section">
+        <h3>History</h3>
+        <div class="history" id="history"></div>
+        <button class="clear-history-btn" onclick="clearHistory()">Clear History</button>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="header">
+        <div class="url-bar">
+            <input type="text" id="urlInput" placeholder="Enter URL or search..." value="https://example.com">
+            <select id="proxySelect">
+                <option value="corsproxy">CORSProxy</option>
+                <option value="allorigins">AllOrigins</option>
+                <option value="api-allorigins">API (AllOrigins)</option>
+            </select>
+            <button onclick="launchProxy()" class="launch-btn">Launch</button>
+            <button onclick="refreshProxy()" class="refresh-btn">🔄</button>
+            <button onclick="goBack()" class="back-btn">←</button>
+            <button onclick="goForward()" class="forward-btn">→</button>
+        </div>
+        <div class="status-bar">
+            <span id="statusText">Ready</span>
+            <span id="loadingSpinner" class="spinner" style="display: none;">⏳</span>
+        </div>
+    </div>
+
+    <div class="viewer-container">
+        <iframe id="viewer" class="viewer"></iframe>
+    </div>
+</div>
+
+<div class="settings-modal" id="settingsModal">
+    <div class="settings-content">
+        <h2>Settings</h2>
+        <label>
+            <input type="checkbox" id="darkMode" onchange="toggleDarkMode()"> Dark Mode
+        </label>
+        <label>
+            <input type="checkbox" id="enableHistory" checked onchange="toggleHistoryTracking()"> Track History
+        </label>
+        <label>
+            <input type="checkbox" id="enableBookmarks" checked> Enable Bookmarks
+        </label>
+        <hr>
+        <h3>Advanced Settings</h3>
+        <label>
+            <input type="text" id="customProxy" placeholder="Custom proxy URL (optional)">
+        </label>
+        <small>Custom proxy should accept URL as parameter</small>
+        <hr>
+        <button onclick="exportData()">📥 Export Data</button>
+        <button onclick="importData()">📤 Import Data</button>
+        <button onclick="resetAll()">🔄 Reset All</button>
+        <button onclick="toggleSettings()" class="close-btn">Close</button>
+    </div>
+</div>
+
+<input type="file" id="importFile" accept=".json" style="display: none;" onchange="processImport()">
+
+<script src="script.js"></script>
+
+</body>
+</html>
